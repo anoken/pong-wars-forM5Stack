@@ -5,12 +5,12 @@ Pong-wars is fun just to watch. It has a high affinity with M5Stack, and it is v
 
 I created the base using this as a reference.
 
-https://github.com/vnglst/pong-wars/tree/main
+https://github.com/vnglst/pong-wars/
 
 # Develop Enviroment
-VSCode + PlatformIO + M5Unified
+M5Unified + VSCode + PlatformIO 
 
-https://github.com/m5stack/M5Unified
+https://github.com/m5stack/M5Unified/
 
 # demo movie
 https://github.com/anoken/pong-wars_for_M5Stack/assets/31365453/6103dd83-21b1-4c14-8b9c-00983b5e58a5
