@@ -10,7 +10,7 @@ https://github.com/vnglst/pong-wars/<br>
 M5Unified + VSCode + PlatformIO & M5Stack Core2<br>
 
 # My Project
-![X_movie](https://github.com/anoken/pong-wars-forM5Stack/blob/main/doc/anoken_x.png)
-https://twitter.com/anoken2017/status/1752132949531824578
+![X_movie](https://github.com/anoken/pong-wars-forM5Stack/blob/main/doc/anoken_x.png)<br>
+https://twitter.com/anoken2017/status/1752132949531824578<br>
 
 # Related Projects
