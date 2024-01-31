@@ -13,4 +13,4 @@ https://twitter.com/anoken2017/status/1752132949531824578<br>
 
 # Related Projects
 https://github.com/vnglst/pong-wars/<br>
-[https://t.co/IEGMBUPcly](https://github.com/minoue-xx/digital-art-with-matlab)https://github.com/minoue-xx/digital-art-with-matlab<br>
+https://github.com/minoue-xx/digital-art-with-matlab<br>
