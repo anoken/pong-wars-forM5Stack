@@ -12,4 +12,4 @@ M5Unified + VSCode + PlatformIO & M5Stack Core2
 https://github.com/m5stack/M5Unified/
 
 # X movie
-<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="ja" dir="ltr">Pong WarsをM5Stackに移植しました。<br>ずっと見ていられます。 <a href="https://t.co/lWe2HLT0mC">pic.twitter.com/lWe2HLT0mC</a></p>&mdash; aNo研 (@anoken2017) <a href="https://twitter.com/anoken2017/status/1752132949531824578?ref_src=twsrc%5Etfw">January 30, 2024</a></blockquote>
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwi0hda93YeEAxXvs1YBHddyDz8QFnoECAYQAQ&url=https%3A%2F%2Fgithub.co.jp%2F&usg=AOvVaw2Q6R586TGYQBagCRiQbRRo&opi=89978449
