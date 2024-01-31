@@ -5,7 +5,8 @@ int img_height = 240;
 int SQUARE_SIZE = 16;
 int numSquaresX = img_width / SQUARE_SIZE + 1;
 int numSquaresY = img_height / SQUARE_SIZE + 1;
-int squares[21][16]; //
+
+std::vector<std::vector<int>> squares;
 M5Canvas canvas(&M5.Display);
 
 struct _pong {
@@ -15,9 +16,9 @@ struct _pong {
     double dy;
     int class_num;
 };
-int pong_no = 2;
+double vel = SQUARE_SIZE / 2;
 
-struct _pong pong[4];
+std::vector<_pong> pong;
 
 double randomNum(double min, double max) {
     int rand_int = rand() % 100;
@@ -48,15 +49,16 @@ int updateSquareAndBounce(int numSquaresX, int numSquaresY, double x, double y, 
                     updatedDy = -updatedDy;
                 }
 
-                // ボールがループにはまらないように、バウンドにランダム性を加える。
+                // ボールがループにはまらないように、バウンドにノイズを加える。
                 updatedDx += randomNum(-0.25, 0.25);
                 updatedDy += randomNum(-0.25, 0.25);
             }
         }
     }
 
-    dx = updatedDx;
-    dy = updatedDy;
+    // ノイズによって、徐々に速度変化しないように、速度を正規化する
+    dx = updatedDx / sqrt(updatedDx * updatedDx + updatedDy * updatedDy) * vel;
+    dy = updatedDy / sqrt(updatedDx * updatedDx + updatedDy * updatedDy) * vel;
 
     return 0;
 }
@@ -77,6 +79,14 @@ void setup(void) {
     M5.begin(cfg);
     canvas.createSprite(320, 240);
 
+    squares.resize(numSquaresX);
+    for(int i = 0; i < numSquaresX; i++) {
+        squares[i].resize(numSquaresY);
+    }
+
+    int pong_no = 4;
+    pong.resize(pong_no);
+
     for(int i = 0; i < numSquaresX; i++) {
         for(int j = 0; j < numSquaresY; j++) {
             if(i <= (numSquaresX / 2)) {
@@ -95,35 +105,35 @@ void setup(void) {
 
     pong[0].x = img_width / 4;
     pong[0].y = img_height / 4;
-    pong[0].dx = 5.0;
-    pong[0].dy = -5.0;
+    pong[0].dx = vel;
+    pong[0].dy = -vel;
     pong[0].class_num = 0;
 
     pong[1].x = img_width * 3 / 4;
     pong[1].y = img_height / 4;
-    pong[1].dx = -5.0;
-    pong[1].dy = 5.0;
+    pong[1].dx = -vel;
+    pong[1].dy = vel;
     pong[1].class_num = 1;
 
     pong[2].x = img_width / 4;
     pong[2].y = img_height / 4 * 3;
-    pong[2].dx = -5.0;
-    pong[2].dy = 5.0;
+    pong[2].dx = -vel;
+    pong[2].dy = vel;
     pong[2].class_num = 2;
 
     pong[3].x = img_width * 3 / 4;
     pong[3].y = img_height / 4 * 3;
-    pong[3].dx = -5.0;
-    pong[3].dy = 5.0;
+    pong[3].dx = -vel;
+    pong[3].dy = vel;
     pong[3].class_num = 3;
 }
 
 void loop(void) {
 
     M5.Display.startWrite();
+    for(int i = 0; i < squares.size(); i++) {
+        for(int j = 0; j < squares[i].size(); j++) {
 
-    for(int i = 0; i < numSquaresX; i++) {
-        for(int j = 0; j < numSquaresY; j++) {
             if(squares[i][j] == 0) {
                 uint16_t color = M5.Lcd.color565(237, 223, 214);
                 canvas.fillRect(i * SQUARE_SIZE, j * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE, color);
@@ -142,7 +152,7 @@ void loop(void) {
             }
         }
     }
-    for(int i = 0; i < pong_no; i++) {
+    for(int i = 0; i < pong.size(); i++) {
         uint16_t color = M5.Lcd.color565(237, 223, 214);
         if(pong[i].class_num == 0)
             color = M5.Lcd.color565(200, 100, 81);
@@ -162,7 +172,7 @@ void loop(void) {
     canvas.pushSprite(0, 0);
 
     M5.Display.endWrite();
-    M5.delay(50);
+    M5.delay(10);
     M5.update();
 }
 
