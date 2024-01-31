@@ -11,4 +11,4 @@ M5Unified + VSCode + PlatformIO & M5Stack Core2
 
 
 # X movie
-[X_movie](https://github.com/anoken/pong-wars-forM5Stack/blob/main/doc/anoken_x.png)
+![X_movie](https://github.com/anoken/pong-wars-forM5Stack/blob/main/doc/anoken_x.png)
