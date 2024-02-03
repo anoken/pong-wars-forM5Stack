@@ -25,6 +25,12 @@ double randomNum(double min, double max) {
     double rand_uni = (rand_int / 100.0) * (max - min) + min;
     return rand_uni;
 }
+double sign(double A) {
+    if(A == 0)
+        return 0;
+    else
+        return A / abs(A);
+}
 
 int updateSquareAndBounce(int numSquaresX, int numSquaresY, double x, double y, double &dx, double &dy, int class_num) {
 
@@ -48,17 +54,15 @@ int updateSquareAndBounce(int numSquaresX, int numSquaresY, double x, double y, 
                 } else {
                     updatedDy = -updatedDy;
                 }
-
-                // ボールがループにはまらないように、バウンドにノイズを加える。
-                updatedDx += randomNum(-0.25, 0.25);
-                updatedDy += randomNum(-0.25, 0.25);
             }
         }
     }
 
-    // ノイズによって、徐々に速度変化しないように、速度を正規化する
-    dx = updatedDx / sqrt(updatedDx * updatedDx + updatedDy * updatedDy) * vel;
-    dy = updatedDy / sqrt(updatedDx * updatedDx + updatedDy * updatedDy) * vel;
+    // ボールがループにはまらないように、バウンドにノイズを加える。
+
+    double theta = M_PI / 4 * (1 + randomNum(-0.1, 1));
+    dx = sign(updatedDx) * vel * cos(theta);
+    dy = sign(updatedDy) * vel * sin(theta);
 
     return 0;
 }
